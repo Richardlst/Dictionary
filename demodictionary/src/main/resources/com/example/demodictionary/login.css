@@ -1,0 +1,123 @@
+.left-form{
+  -fx-background-color:linear-gradient(to bottom right, #2d658c, #2ca772);
+  -fx-border-color:#000;
+  -fx-border-width:.4px 0px .4px .4px;
+}
+
+.right-form{
+  -fx-background-color:#fff;
+  -fx-border-color:#000;
+  -fx-border-width:.4px .4px .4px 0px;
+}
+
+.login-btn{
+  -fx-background-color:linear-gradient(to bottom, #2968a7, #14405d);
+  -fx-background-radius:4px;
+  -fx-cursor:hand;
+  -fx-text-fill:#fff;
+  -fx-font-size:14px;
+  -fx-font-family:"Arial";
+}
+.login-btn:hover{
+  -fx-background-color:linear-gradient(to bottom, #277bd0, #1b6fa4);
+}
+.white-bg{
+  -fx-background-color:#fff;
+  -fx-background-radius: 15px;
+}
+.kem-bg{
+  -fx-background-color:#F3FFF3;
+  -fx-background-radius: 15px;
+}
+.xanh-bg{
+  -fx-background-color:#91E9D3;
+  -fx-background-radius: 15px;
+}
+
+.do-bg{
+  -fx-background-color:#F86997;
+  -fx-background-radius: 15px;
+}
+.tim-bg{
+  -fx-background-color:#A38FFE;
+  -fx-background-radius: 15px;
+}
+.xanh2-bg{
+  -fx-background-color:#70D9F6;
+  -fx-background-radius: 15px;
+}
+.cam-bg{
+  -fx-background-color:#FFB45E;
+  -fx-background-radius: 15px;
+}
+.label-bg{
+  -fx-background-color:#9CF0F2;
+  -fx-background-radius: 15px;
+}
+.shadow{
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.9), 6, 0, 0, 0);
+}
+.search{
+  -fx-padding: 0px 0px 0px 34px ;
+
+}
+.instruction{
+  -fx-background-color:linear-gradient(to bottom, #3bbbf2, #8bec36 );
+  -fx-background-radius:4px;
+  -fx-cursor:hand;
+  -fx-text-fill:#fff;
+}
+.instruction-bg{
+  -fx-background-color:#C8EDCA;
+  -fx-background-radius: 15px;
+}
+.instruction-bar{
+  -fx-background-color:#91E9D3;
+  -fx-background-radius: 15px;
+}
+.instruction-bar2{
+  -fx-background-color:#11C095;
+  -fx-background-radius: 15px;
+}
+.account-btn3{
+  -fx-background-color:linear-gradient(to bottom,  #5bb1ad, #1f992f);
+  -fx-background-radius:4px;
+  -fx-cursor:hand;
+  -fx-text-fill:#fff;
+}
+.green-light{
+  -fx-background-color:#11C095;
+  -fx-background-radius: 8px;
+}
+.green-dark{
+  -fx-background-color:#349A95;
+  -fx-background-radius: 8px;
+}
+.rotate{
+  -fx-background-radius: 9px;
+}
+
+.button-translate {
+  -fx-cursor: hand;
+}
+
+.button-translate:hover {
+  -fx-translate-x: 3px;
+}
+.center-left{
+  -fx-alignment: CENTER-LEFT;
+  -fx-cursor: hand;
+}
+.zoom-in-button {
+  -fx-cursor: hand;
+  -fx-transition: transform 0.3s ease-in-out;
+  -fx-scale-x: 1;
+  -fx-scale-y: 1;
+}
+
+.zoom-in-button:hover {
+  -fx-scale-x: 1.1;
+  -fx-scale-y: 1.1;
+}
+
+
