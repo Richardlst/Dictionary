@@ -28,21 +28,24 @@ public class Account {
         this.passWord = passWord;
     }
 
-    static LocalDictionary my_dictionary = new LocalDictionary();
+    static VocabDictionary my_dictionary = new VocabDictionary();
 
-    public static int count_vocab() throws SQLException {
-        my_dictionary.initialize();
-        ArrayList<String> m = my_dictionary.getWordTargetList();
-        return m.size();
+  /**
+   * number of the words in the your vocab.
+   */
+  public static int count_vocab()  {
+      return VocabDictionary.getCount_vocab();
     }
 
-    public static void show_vocab() throws SQLException {
-        my_dictionary.initialize();
-        ArrayList<Word> m = my_dictionary.getWordList();
-        for (int i = 0 ; i < m.size(); i++) {
-            System.out.println(m.get(i).getWord_target() + ": " + m.get(i).getWord_explain());
-        }
+  /**
+   * show all words in your vocab.
+   */
+  public static void show_vocab() throws SQLException {
+      my_dictionary.initialize();
+      ArrayList<Word> m = my_dictionary.getWordList();
+      for (int i = 0 ; i < m.size(); i++) {
+        System.out.println(m.get(i).getWord_target() + ": " + m.get(i).getWord_explain());
+      }
     }
-
 
 }
