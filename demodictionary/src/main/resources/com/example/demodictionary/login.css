@@ -4,19 +4,8 @@
   -fx-border-width:.4px 0px .4px .4px;
 }
 
-.right-form{
-  -fx-background-color:#fff;
-  -fx-border-color:#000;
-  -fx-border-width:.4px .4px .4px 0px;
-}
-
 .login-btn{
-  -fx-background-color:linear-gradient(to bottom, #2968a7, #14405d);
-  -fx-background-radius:4px;
-  -fx-cursor:hand;
-  -fx-text-fill:#fff;
-  -fx-font-size:14px;
-  -fx-font-family:"Arial";
+  -fx-background-color: transparent;
 }
 .login-btn:hover{
   -fx-background-color:linear-gradient(to bottom, #277bd0, #1b6fa4);
@@ -33,7 +22,10 @@
   -fx-background-color:#91E9D3;
   -fx-background-radius: 15px;
 }
-
+.la-bg{
+  -fx-background-color:linear-gradient(to bottom, #DBEED9, #2CA274);
+  -fx-background-radius: 15px;
+}
 .do-bg{
   -fx-background-color:#F86997;
   -fx-background-radius: 15px;
@@ -94,7 +86,7 @@
   -fx-background-radius: 8px;
 }
 .rotate{
-  -fx-background-radius: 9px;
+  -fx-background-radius: 12px;
 }
 
 .button-translate {

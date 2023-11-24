@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="849.0" styleClass="rotate" stylesheets="@login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demodictionary.Hangman">
+   <children>
+      <BorderPane prefHeight="520.0" prefWidth="850.0" styleClass="rotate" stylesheets="@login.css">
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane layoutX="72.0" layoutY="189.0" prefHeight="604.0" prefWidth="649.6" styleClass="left-form" stylesheets="@login.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane fx:id="hangman_bg" layoutX="13.0" layoutY="17.0" prefHeight="558.0" prefWidth="610.0" stylesheets="@login.css">
+                           <styleClass>
+                              <String fx:value="white-bg" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <children>
+                              <ImageView fitHeight="544.0" fitWidth="594.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" styleClass="white-bg">
+                                 <image>
+                                    <Image url="@../../../../../src/main/resources/1.jpg" />
+                                 </image>
+                              </ImageView>
+                              <FlowPane fx:id="buttons" hgap="7.0" layoutX="22.0" layoutY="333.0" prefHeight="198.0" prefWidth="327.0" vgap="7.0">
+                                 <children>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="A">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="B">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="C">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="D">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="E">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="F">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="G">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="H">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="I">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="J">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="K">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="L">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="M">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="N">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="O">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="P">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="Q">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="R">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="S">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="T">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="U">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="V">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="W">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="X">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="Y">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="Z">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </FlowPane>
+                              <Text fx:id="text" fill="WHITE" layoutX="40.0" layoutY="179.0" stroke="TRANSPARENT" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="273.3285827636719">
+                                 <font>
+                                    <Font size="40.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="winStatus" fill="#f58c5b" layoutX="364.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="213.909423828125">
+                                 <font>
+                                    <Font size="48.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="realWord" fill="#ff7a42" layoutX="40.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="209.40000915527344">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <AnchorPane layoutX="330.0" layoutY="33.0" prefHeight="240.0" prefWidth="234.0">
+                                 <children>
+                                    <ImageView fx:id="base1" fitHeight="252.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../src/main/resources/Gallows0.gif" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="base2" fitHeight="252.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../src/main/resources/Gallows1.gif" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="base3" fitHeight="252.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../src/main/resources/Gallows2.gif" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="base4" fitHeight="252.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../src/main/resources/Gallows3.gif" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="base5" fitHeight="252.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../src/main/resources/Gallows4.gif" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="base6" fitHeight="252.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../src/main/resources/Gallows5.gif" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="base7" fitHeight="252.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../src/main/resources/Gallows6.gif" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                              <Button focusTraversable="false" layoutX="24.0" layoutY="25.0" mnemonicParsing="false" onAction="#newGame" styleClass="la-bg" text="New Game" />
+                              <Button fx:id="back_to_game" layoutX="544.0" layoutY="504.0" mnemonicParsing="false" onAction="#backToGame" prefHeight="30.0" prefWidth="34.0" styleClass="rotate" textFill="#349994">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="#349994" glyphName="BACKWARD" selectionFill="#349994" wrappingWidth="16.74283218383789" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+         <left>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="left-form" stylesheets="@login.css" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="137.0" fitWidth="141.0" layoutX="31.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../382337342_347690480974259_1995473226183488835_n.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="39.0" layoutY="189.0" text="Welcome to" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="48.0" layoutY="217.0" text="Dictionary" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Line endX="83.40003967285156" layoutX="100.0" layoutY="255.0" startX="-79.79997253417969" stroke="#fff8f8" />
+                  <Button fx:id="home" layoutX="30.0" layoutY="284.0" mnemonicParsing="false" onAction="#home" prefHeight="25.0" prefWidth="142.0" stylesheets="@login.css" text="     Home" textFill="#349994">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="button-translate" />
+                        <String fx:value="center-left" />
+                     </styleClass>
+                     <graphic>
+                        <FontAwesomeIcon fill="#349a95" glyphName="HOME" size="1.2em" styleClass="green-dark" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="vocab" layoutX="30.0" layoutY="341.0" mnemonicParsing="false" onAction="#yourVocab" prefHeight="28.0" prefWidth="142.0" stylesheets="@login.css" text="     Your Vocab" textFill="#349994">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="button-translate" />
+                        <String fx:value="center-left" />
+                     </styleClass>
+                     <graphic>
+                        <FontAwesomeIcon fill="#349a95" glyphName="BOOK" size="1.2em" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="game" layoutX="30.0" layoutY="398.0" mnemonicParsing="false" onAction="#game" prefHeight="25.0" prefWidth="142.0" stylesheets="@login.css" text="    Game" textFill="#349994">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#349a95" glyphName="GAMEPAD" size="1.2em" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="center-left" />
+                        <String fx:value="button-translate" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="account" layoutX="30.0" layoutY="461.0" mnemonicParsing="false" onAction="#account" prefHeight="25.0" prefWidth="142.0" text="     Account" textFill="#349994">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#349a95" glyphName="USER" size="1.2em" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="center-left" />
+                        <String fx:value="button-translate" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="logout" layoutX="30.0" layoutY="523.0" mnemonicParsing="false" onAction="#userLogout" prefHeight="25.0" prefWidth="142.0" text="    Log out" textFill="#349994">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#349a95" glyphName="SIGN_OUT" size="1.2em" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="center-left" />
+                        <String fx:value="button-translate" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </left>
+      </BorderPane>
+   </children>
+</StackPane>

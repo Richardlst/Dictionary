@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demodictionary.AfterLogin">
+   <children>
+      <BorderPane prefHeight="520.0" prefWidth="850.0">
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane layoutX="72.0" layoutY="189.0" prefHeight="604.0" prefWidth="649.6" styleClass="left-form" stylesheets="@login.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane layoutX="13.0" layoutY="17.0" prefHeight="558.0" prefWidth="610.0" stylesheets="@login.css">
+                           <styleClass>
+                              <String fx:value="white-bg" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <children>
+                              <AnchorPane layoutX="8.0" layoutY="9.0" prefHeight="539.0" prefWidth="593.0" styleClass="instruction-bg">
+                                 <children>
+                                    <AnchorPane layoutX="9.0" layoutY="14.0" prefHeight="50.0" prefWidth="575.0" styleClass="instruction-bar" />
+                                    <AnchorPane fx:id="searchbar" layoutX="34.0" layoutY="36.0" prefHeight="48.0" prefWidth="526.0" styleClass="instruction-bar2">
+                                       <children>
+                                          <TextField fx:id="search_term" layoutX="5.0" layoutY="5.5" prefHeight="36.0" prefWidth="515.0" promptText="Enter search terms...">
+                                             <styleClass>
+                                                <String fx:value="search" />
+                                                <String fx:value="kem-bg" />
+                                             </styleClass>
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </TextField>
+                                          <ImageView fx:id="look" fitHeight="20.0" fitWidth="17.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../233757.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Button fx:id="find" blendMode="OVERLAY" layoutX="12.0" layoutY="10.0" mnemonicParsing="false" onAction="#lookup" prefHeight="26.0" prefWidth="22.0" styleClass="login-btn" text="Button" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="intro" layoutX="63.0" layoutY="176.0" prefHeight="294.0" prefWidth="469.0" styleClass="kem-bg">
+                                       <children>
+                                          <TextArea layoutX="14.0" layoutY="14.0" prefHeight="262.0" prefWidth="442.0" wrapText="true">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <Label fx:id="tag1" alignment="CENTER" layoutX="20.0" layoutY="98.0" prefHeight="25.0" prefWidth="80.0" styleClass="label-bg" text="#Creative" textAlignment="CENTER" />
+                                    <Label fx:id="tag2" alignment="CENTER" layoutX="125.0" layoutY="98.0" prefHeight="26.0" prefWidth="63.0" styleClass="label-bg" text="#Smart" textAlignment="CENTER" />
+                                    <Label fx:id="tag3" alignment="CENTER" layoutX="213.0" layoutY="98.0" prefHeight="26.0" prefWidth="61.0" styleClass="label-bg" text="#Funny" textAlignment="CENTER" />
+                                    <Label fx:id="tag4" alignment="CENTER" layoutX="299.0" layoutY="98.0" prefHeight="25.0" prefWidth="78.0" styleClass="label-bg" text="#Various" textAlignment="CENTER" />
+                                    <Label fx:id="tag5" alignment="CENTER" layoutX="402.0" layoutY="98.0" prefHeight="25.0" prefWidth="78.0" styleClass="label-bg" text="#Effective" textAlignment="CENTER" />
+                                    <Label fx:id="tag51" alignment="CENTER" layoutX="505.0" layoutY="98.0" prefHeight="25.0" prefWidth="60.0" styleClass="label-bg" text="#Fast" textAlignment="CENTER" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+         <left>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="left-form" stylesheets="@login.css" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="137.0" fitWidth="141.0" layoutX="31.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../382337342_347690480974259_1995473226183488835_n.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="39.0" layoutY="189.0" text="Welcome to" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="48.0" layoutY="217.0" text="Dictionary" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Line endX="83.40003967285156" layoutX="100.0" layoutY="255.0" startX="-79.79997253417969" stroke="#fff8f8" />
+                  <Button fx:id="home" layoutX="30.0" layoutY="284.0" mnemonicParsing="false" onAction="#home" prefHeight="25.0" prefWidth="142.0" stylesheets="@login.css" text="     Home" textFill="#349994">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="button-translate" />
+                        <String fx:value="center-left" />
+                     </styleClass>
+                     <graphic>
+                        <FontAwesomeIcon fill="#349a95" glyphName="HOME" size="1.2em" styleClass="green-dark" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="vocab" layoutX="30.0" layoutY="341.0" mnemonicParsing="false" onAction="#yourVocab" prefHeight="28.0" prefWidth="142.0" stylesheets="@login.css" text="     Your Vocab" textFill="#349994">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="button-translate" />
+                        <String fx:value="center-left" />
+                     </styleClass>
+                     <graphic>
+                        <FontAwesomeIcon fill="#349a95" glyphName="BOOK" size="1.2em" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="game" layoutX="30.0" layoutY="398.0" mnemonicParsing="false" onAction="#game" prefHeight="25.0" prefWidth="142.0" stylesheets="@login.css" text="    Game" textFill="#349994">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#349a95" glyphName="GAMEPAD" size="1.2em" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="center-left" />
+                        <String fx:value="button-translate" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="account" layoutX="30.0" layoutY="461.0" mnemonicParsing="false" onAction="#account" prefHeight="25.0" prefWidth="142.0" text="     Account" textFill="#349994">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#349a95" glyphName="USER" size="1.2em" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="center-left" />
+                        <String fx:value="button-translate" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="logout" layoutX="30.0" layoutY="523.0" mnemonicParsing="false" onAction="#userLogout" prefHeight="25.0" prefWidth="142.0" text="    Log out" textFill="#349994">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#349a95" glyphName="SIGN_OUT" size="1.2em" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="center-left" />
+                        <String fx:value="button-translate" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </left>
+      </BorderPane>
+   </children>
+</StackPane>

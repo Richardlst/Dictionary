@@ -27,21 +27,12 @@
                               <String fx:value="shadow" />
                            </styleClass>
                            <children>
-                              <TextField layoutX="34.0" layoutY="21.0" prefHeight="44.0" prefWidth="550.0" promptText="Search" stylesheets="@login.css">
-                                 <styleClass>
-                                    <String fx:value="search" />
-                                    <String fx:value="shadow" />
-                                    <String fx:value="white-bg" />
-                                 </styleClass>
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font></TextField>
                               <AnchorPane layoutX="8.0" layoutY="9.0" prefHeight="539.0" prefWidth="593.0" styleClass="instruction-bg">
                                  <children>
                                     <AnchorPane layoutX="9.0" layoutY="14.0" prefHeight="50.0" prefWidth="575.0" styleClass="instruction-bar" />
                                     <AnchorPane fx:id="searchbar" layoutX="34.0" layoutY="36.0" prefHeight="48.0" prefWidth="526.0" styleClass="instruction-bar2">
                                        <children>
-                                          <TextField layoutX="5.0" layoutY="5.5" prefHeight="36.0" prefWidth="515.0" promptText="Enter search terms...">
+                                          <TextField fx:id="search_term" layoutX="5.0" layoutY="5.5" prefHeight="36.0" prefWidth="515.0" promptText="Enter search terms...">
                                              <styleClass>
                                                 <String fx:value="search" />
                                                 <String fx:value="kem-bg" />
@@ -55,6 +46,7 @@
                                                 <Image url="@../../../233757.png" />
                                              </image>
                                           </ImageView>
+                                          <Button fx:id="find" blendMode="OVERLAY" layoutX="12.0" layoutY="10.0" mnemonicParsing="false" onAction="#lookup" prefHeight="26.0" prefWidth="22.0" styleClass="login-btn" text="Button" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane fx:id="intro" layoutX="63.0" layoutY="176.0" prefHeight="294.0" prefWidth="469.0" styleClass="kem-bg">

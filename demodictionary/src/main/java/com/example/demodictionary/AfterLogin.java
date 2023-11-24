@@ -1,27 +1,46 @@
 package com.example.demodictionary;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
+import javafx.scene.web.WebView;
 import javafx.util.Duration;
 import javafx.scene.image.ImageView;
 import java.io.IOException;
 import org.controlsfx.glyphfont.FontAwesome;
-
+import org.apache.commons.text.StringEscapeUtils;
 public class AfterLogin implements Initializable{
 
   @FXML
   private Button logout;
+
+  public AfterLogin() throws FileNotFoundException {
+  }
 
 
   public void userLogout(ActionEvent event) throws IOException {
@@ -63,6 +82,14 @@ public class AfterLogin implements Initializable{
     HelloApplication m = new HelloApplication();
     m.changeScene("info.fxml");
   }
+  public void hangman(ActionEvent actionEvent) throws IOException {
+    HelloApplication m = new HelloApplication();
+    m.changeScene("hangman.fxml");
+  }
+  public void millionaire(ActionEvent actionEvent) throws IOException {
+    HelloApplication m = new HelloApplication();
+    m.changeScene("millionaire.fxml");
+  }
   @FXML
   private ImageView gaming_time;
   @FXML
@@ -91,6 +118,18 @@ public class AfterLogin implements Initializable{
   private Label tag4;
   @FXML
   private Label tag5;
+  @FXML
+  private Button analyze;
+  @FXML
+  private Button time;
+  @FXML
+  private Button info;
+  @FXML
+  private Button amount;
+  @FXML
+  private Button show_all;
+  @FXML
+  private AnchorPane hello_tag;
   public void FadeEffect(Button node) {
     FadeTransition fade = new FadeTransition();
     fade.setNode(node);
@@ -159,6 +198,21 @@ public class AfterLogin implements Initializable{
     scale.setAutoReverse(true);
     scale.play();
   }
+  public void translate1(Button image) {
+    TranslateTransition translate = new TranslateTransition();
+    translate.setNode(image);
+    translate.setDuration(Duration.millis(700));
+    translate.setByY(83);
+    translate.play();
+  }
+  public void translate2(TextArea image) {
+    TranslateTransition translate = new TranslateTransition();
+    translate.setNode(image);
+    translate.setDuration(Duration.millis(700));
+    translate.setByY(75);
+    translate.play();
+  }
+
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -179,6 +233,69 @@ public class AfterLogin implements Initializable{
     FadeEffect2(tag4);
     FadeEffect2(tag5);
     FadeEffect3(searchbar);
+    FadeEffect3(hello_tag);
+    translate1(analyze);
+    translate1(amount);
+    translate1(time);
+    translate1(info);
+    translate1(show_all);
+    translate1(speakEL);
+    translate1(speakVN);
+    translate2(translate_text);
+    translate2(translated);
+  }
+  @FXML
+  private TextArea translate_text;
+  @FXML
+  private TextArea translated;
+  @FXML
+  private Button search_btn;
+  @FXML
+  private void translateAndSet(javafx.event.ActionEvent event) throws IOException {
+    String inputText = translate_text.getText();
+    String translatedText = TranslatorApi.translateViToEn(inputText);
+    translated.setText(translatedText);
+  }
+  @FXML
+  private void showAll(javafx.event.ActionEvent event) throws IOException {
+
+  }
+  @FXML
+  private WebView definitionView = new WebView();
+
+  @FXML
+  private Button find;
+  @FXML
+  private TextField search_term;
+  @FXML
+  private ImageView intro_image;
+  @FXML
+  private ListView<String> listView;
+ @FXML
+  private void lookup(javafx.event.ActionEvent event) throws IOException, SQLException {
+    intro_image.setVisible(false);
+    String inputText = search_term.getText();
+    List<String> suggestedWords = Trie.dictionarySearched(inputText);
+    ObservableList<String> items = FXCollections.observableArrayList(suggestedWords);
+    listView.setItems(items);
+    DatabaseDictionary databaseDictionary = new DatabaseDictionary();
+    databaseDictionary.initialize();
+    String translatedText = databaseDictionary.dictionaryLookup(inputText);
+    definitionView.getEngine().loadContent(translatedText, "text/html");
+  }
+  @FXML
+  private Button speakEL;
+  @FXML
+  private Button speakVN;
+  @FXML
+  private void speakVN(javafx.event.ActionEvent event) throws IOException {
+    String inputText = translate_text.getText();
+    TextToSpeech.playSoundVietnamese(inputText);
+  }
+  @FXML
+  private void speakEL(javafx.event.ActionEvent event) throws IOException {
+    String inputText = translated.getText();
+    TextToSpeech.playSoundEnglish(inputText);
   }
 
 }
