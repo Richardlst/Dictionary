@@ -71,7 +71,7 @@ public class DatabaseDictionary extends org.example.Dictionary {
         connectToDatabase();
         ArrayList<String> targets = getWordTargetList();
         for (String word : targets) {
-            //Trie.insert(word);
+          Trie.addWord(word);
         }
     }
 
@@ -196,6 +196,7 @@ public class DatabaseDictionary extends org.example.Dictionary {
             } finally {
                 close(ps);
             }
+            Trie.addWord(target);
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -219,6 +220,7 @@ public class DatabaseDictionary extends org.example.Dictionary {
             } finally {
                 close(ps);
             }
+            Trie.deleteWord(target);
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
