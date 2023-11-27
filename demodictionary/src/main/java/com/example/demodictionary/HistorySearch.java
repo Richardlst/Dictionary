@@ -13,27 +13,27 @@ public class HistorySearch {
   /**
    * add to history.
    */
-  public static void addToHistory(String searchTerm) {
+  public void addToHistory(String searchTerm) {
     searchHistory.add(searchTerm);
   }
 
-  public static List<String> getSearchHistory() {
+  public List<String> getSearchHistory() {
     return searchHistory;
   }
 
   /**
    * clear History.
    */
-  public static void clearHistory() {
+  public void clearHistory() {
     searchHistory.clear();
   }
 
   /**
    * show HistorySearch.
    */
-  public static void showHistory() {
+  public void showHistory() {
     int m = searchHistory.size();
-    for (int i = m - 1 ; i >= 0; i++) {
+    for (int i = m - 1 ; i >= 0; i--) {
       System.out.println(searchHistory.get(i));
     }
   }
