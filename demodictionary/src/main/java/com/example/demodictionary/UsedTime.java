@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Time {
+public class UsedTime {
   private long usedTime;
   private long usedMinutes;
   public final static String filePath = "E:\\OOP (thuc hanh)\\untitled4\\src\\UsedTime.txt";
