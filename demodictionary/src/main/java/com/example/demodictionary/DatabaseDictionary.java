@@ -94,7 +94,6 @@ public class DatabaseDictionary extends Dictionary {
                 ResultSet rs = ps.executeQuery();
                 try {
                     if (rs.next()) {
-                        HistorySearch.addToHistory(target);
                         return rs.getString("definition");
                     } else {
                         return "Word not found in the dictionary.";
