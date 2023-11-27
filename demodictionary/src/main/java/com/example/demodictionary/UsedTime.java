@@ -6,11 +6,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class UsedTime {
+public class Time {
   private long usedTime;
-
+  private long usedMinutes;
   public final static String filePath = "E:\\OOP (thuc hanh)\\untitled4\\src\\UsedTime.txt";
-
   private long startTime;
 
   /**
@@ -59,5 +58,13 @@ public class UsedTime {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  /**
+   * Get usage time in minutes.
+   */
+  public long getTimeByMinutes() {
+    usedMinutes = getUsedTime() / 60;
+    return usedMinutes;
   }
 }
