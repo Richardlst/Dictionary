@@ -24,4 +24,9 @@ public abstract class Dictionary {
      * Lookup the target_word and return the definition.
      */
     public abstract String dictionaryLookup(String target);
+
+
+    /** delete the word. */
+    public abstract boolean deleteWord(String word);
+
 }
