@@ -52,6 +52,7 @@ public class Trie {
         if (prefix.isEmpty()) {
             return new ArrayList<>();
         }
+        prefix = prefix.toLowerCase();
         searchedWords.clear();
         int length = prefix.length();
         TrieNode cur = root;
