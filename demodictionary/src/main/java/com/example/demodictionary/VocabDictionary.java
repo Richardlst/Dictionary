@@ -141,6 +141,29 @@ public class VocabDictionary extends Dictionary {
         }
     }
 
+  /**
+   * Delete the word `target` from the database.
+   */
+  public boolean deleteWord(final String target) {
+    final String SQL_QUERY = "DELETE FROM dictionary WHERE target = ?";
+    try {
+      PreparedStatement ps = connectVocab.prepareStatement(SQL_QUERY);
+      ps.setString(1, target);
+      try {
+        int checkDeleted = ps.executeUpdate();
+        if (checkDeleted == 0) {
+          return false;
+        }
+      } finally {
+        close(ps);
+      }
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
     /**
      * Get all words target from the database.
      */
