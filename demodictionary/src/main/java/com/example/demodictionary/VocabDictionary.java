@@ -229,7 +229,7 @@ public class VocabDictionary extends Dictionary {
                 try {
                     ArrayList<String> targets = new ArrayList<>();
                     while (rs.next()) {
-                        targets.add("target");
+                        targets.add(rs.getString("target"));
                     }
                     return targets;
 
