@@ -4,13 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DatabaseDictionary extends Dictionary {
-    private static final String LOCAL_HOST = "localhost";
-    private static final String DB_NAME = "en_vi_dictionary";
+    private static final String MYSQL_URL =
+        "jdbc:mysql://localhost:3307/en_vi_dictionary";
     private static final String USER_NAME = "root";
     private static final String PASSWORD = "toan260312a1qh1";
-    private static final String PORT = "3307";
-    private static final String MYSQL_URL =
-            "jdbc:mysql://" + LOCAL_HOST + ":" + PORT + "/" + DB_NAME;
 
     private static Connection connection = null;
 
@@ -71,7 +68,7 @@ public class DatabaseDictionary extends Dictionary {
         connectToDatabase();
         ArrayList<String> targets = getWordTargetList();
         for (String word : targets) {
-            //Trie.insert(word);
+            Trie.addWord(word);
         }
     }
 
@@ -85,7 +82,7 @@ public class DatabaseDictionary extends Dictionary {
     }
 
     /**
-     * Lookup an English word `target` in database (look for the exact word `target`).
+     * Lookup an English word `target` in database dictionary.
      */
 
     public String dictionaryLookup(final String target) {
@@ -114,46 +111,37 @@ public class DatabaseDictionary extends Dictionary {
     }
 
     /**
-     * Get all words from result set of the given SQL query.
+     * Get all words from the database.
      */
-    private ArrayList<Word> getWordsFromResultSet(PreparedStatement ps) throws SQLException {
-        try {
-            ResultSet rs = ps.executeQuery();
-            try {
-                ArrayList<Word> words = new ArrayList<>();
-                while (rs.next()) {
-                    words.add(new Word(rs.getString(2), rs.getString(3)));
-                }
-                return words;
-
-            } finally {
-                close(rs);
-            }
-        } finally {
-            close(ps);
-        }
-    }
-
-    /**
-     * Get all words into an `ArrayList(Word)>`.
-     */
-    @Override
     public ArrayList<Word> getWordList() {
-        final String SQL_QUERY = "SELECT * FROM dictionary";
+      final String SQL_QUERY = "SELECT * FROM dictionary";
+      try {
+        PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
         try {
-            PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
-            return getWordsFromResultSet(ps);
-        } catch (SQLException e) {
-            e.printStackTrace();
+          ResultSet rs = ps.executeQuery();
+          try {
+            ArrayList<Word> words = new ArrayList<>();
+            while (rs.next()) {
+              words.add(new Word(rs.getString(2), rs.getString(3)));
+            }
+            return words;
+          } finally {
+            close(rs);
+          }
+        } finally {
+          close(ps);
         }
-        return new ArrayList<>();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+      return new ArrayList<>();
     }
 
     /**
-     * Get all words target from the database (only target, non include the definition).
+     * Get all words target from the database.
      */
     public ArrayList<String> getWordTargetList() {
-        final String SQL_QUERY = "SELECT * FROM dictionary";
+        final String SQL_QUERY = "SELECT target FROM dictionary";
         try {
             PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
             try {
@@ -161,10 +149,9 @@ public class DatabaseDictionary extends Dictionary {
                 try {
                     ArrayList<String> targets = new ArrayList<>();
                     while (rs.next()) {
-                        targets.add(rs.getString(2));
+                        targets.add("target");
                     }
                     return targets;
-
                 } finally {
                     close(rs);
                 }
@@ -212,8 +199,8 @@ public class DatabaseDictionary extends Dictionary {
             PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
             ps.setString(1, target);
             try {
-                int deletedRows = ps.executeUpdate();
-                if (deletedRows == 0) {
+                int checkDeleted = ps.executeUpdate();
+                if (checkDeleted == 0) {
                     return false;
                 }
             } finally {
@@ -236,8 +223,8 @@ public class DatabaseDictionary extends Dictionary {
             ps.setString(1, definition);
             ps.setString(2, target);
             try {
-                int updatedRows = ps.executeUpdate();
-                if (updatedRows == 0) {
+                int checkEdit = ps.executeUpdate();
+                if (checkEdit == 0) {
                     return false;
                 }
             } finally {
