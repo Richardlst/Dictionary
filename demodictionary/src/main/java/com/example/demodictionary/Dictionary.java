@@ -16,11 +16,6 @@ public abstract class Dictionary {
     public void close() {};
 
     /**
-     * Get all words in the dictionary.
-     */
-    public abstract ArrayList<Word> getWordList();
-
-    /**
      * Get all English words.
      */
     public abstract ArrayList<String> getWordTargetList();
@@ -29,18 +24,4 @@ public abstract class Dictionary {
      * Lookup the target_word and return the definition.
      */
     public abstract String dictionaryLookup(String target);
-
-    /**
-     * Add a new word to dictionary.
-     */
-    public abstract boolean addWord(String word, String meaning);
-
-    /**
-     *Edit explaining_words for word.
-     */
-    public abstract boolean editWord(String word, String newMeaning);
-
-    /** delete the word. */
-    public abstract boolean deleteWord(String word);
-
 }
