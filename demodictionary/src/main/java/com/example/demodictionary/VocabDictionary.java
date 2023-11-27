@@ -4,15 +4,12 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class VocabDictionary extends Dictionary {
-    private static final String HOST_NAME = "127.0.0.1";
-    private static final String DB_NAME = "vocab_dictionary";
-    private static final String USER_NAME = "root";
-    private static final String PASSWORD = "damkien404003";
-    private static final String PORT = "3307";
-    private static final String MYSQL_URL =
-            "jdbc:mysql://" + HOST_NAME + ":" + PORT + "/" + DB_NAME;
+  private static final String MYSQL_URL =
+      "jdbc:mysql://localhost:3307/vocab_dictionary";
+  private static final String USER_NAME = "root";
+  private static final String PASSWORD = "toan260312a1qh1";
 
-    private static Connection connection = null;
+    private static Connection connectVocab = null;
 
     private static int count_vocab;
 
@@ -26,10 +23,10 @@ public class VocabDictionary extends Dictionary {
     /**
      * Close connection to MYSQL database.
      */
-    private static void close(Connection connection) {
+    private static void close(Connection connectVocab) {
         try {
-            if (connection != null) {
-                connection.close();
+            if (connectVocab != null) {
+                connectVocab.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,7 +64,7 @@ public class VocabDictionary extends Dictionary {
      */
     private void connectToDatabase() throws SQLException {
         System.out.println("Connecting to database...");
-        connection = DriverManager.getConnection(MYSQL_URL, USER_NAME, PASSWORD);
+        connectVocab = DriverManager.getConnection(MYSQL_URL, USER_NAME, PASSWORD);
         System.out.println("Database connected!\n");
     }
 
@@ -87,18 +84,18 @@ public class VocabDictionary extends Dictionary {
      */
     @Override
     public void close() {
-        close(connection);
+        close(connectVocab);
         System.out.println("Database disconnected!");
     }
 
     /**
-     * Lookup an English word `target` in database (look for the exact word `target`).
+     * Lookup an English word `target` in database.
      */
     @Override
     public String dictionaryLookup(final String target) {
         final String SQL_QUERY = "SELECT definition FROM vocab_dictionary WHERE target = ?";
         try {
-            PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
+            PreparedStatement ps = connectVocab.prepareStatement(SQL_QUERY);
             ps.setString(1, target);
             try {
                 ResultSet rs = ps.executeQuery();
@@ -126,7 +123,7 @@ public class VocabDictionary extends Dictionary {
     public boolean addWord(final String target, final String definition) {
         final String SQL_QUERY = "INSERT INTO vocab_dictionary.your_vocabulary (target, definition) VALUES (?, ?)";
         try {
-            PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
+            PreparedStatement ps = connectVocab.prepareStatement(SQL_QUERY);
             ps.setString(1, target);
             ps.setString(2, definition);
             try {
@@ -151,11 +148,11 @@ public class VocabDictionary extends Dictionary {
     public boolean deleteWord(final String target) {
         final String SQL_QUERY = "DELETE FROM vocab_dictionary WHERE target = ?";
         try {
-            PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
+            PreparedStatement ps = connectVocab.prepareStatement(SQL_QUERY);
             ps.setString(1, target);
             try {
-                int deletedRows = ps.executeUpdate();
-                if (deletedRows == 0) {
+                int checkDeleted = ps.executeUpdate();
+                if (checkDeleted == 0) {
                     return false;
                 }
             } finally {
@@ -175,12 +172,12 @@ public class VocabDictionary extends Dictionary {
     public boolean editWord(final String target, final String definition) {
         final String SQL_QUERY = "UPDATE vocab_dictionary SET definition = ? WHERE target = ?";
         try {
-            PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
+            PreparedStatement ps = connectVocab.prepareStatement(SQL_QUERY);
             ps.setString(1, definition);
             ps.setString(2, target);
             try {
-                int updatedRows = ps.executeUpdate();
-                if (updatedRows == 0) {
+                int checkEdit = ps.executeUpdate();
+                if (checkEdit == 0) {
                     return false;
                 }
             } finally {
@@ -196,52 +193,43 @@ public class VocabDictionary extends Dictionary {
     /**
      * Get all words from result set of the given SQL query.
      */
-    private ArrayList<Word> getWordsFromResultSet(PreparedStatement ps) throws SQLException {
-        try {
-            ResultSet rs = ps.executeQuery();
-            try {
-                ArrayList<Word> words = new ArrayList<>();
-                while (rs.next()) {
-                    words.add(new Word(rs.getString(2), rs.getString(3)));
-                }
-                return words;
-
-            } finally {
-                close(rs);
-            }
-        } finally {
-            close(ps);
-        }
-    }
-
-    /**
-     * Get all words into an `ArrayList(Word)>`.
-     */
-    @Override
     public ArrayList<Word> getWordList() {
-        final String SQL_QUERY = "SELECT * FROM your_vocabulary";
+      final String SQL_QUERY = "SELECT * FROM dictionary";
+      try {
+        PreparedStatement ps = connectVocab.prepareStatement(SQL_QUERY);
         try {
-            PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
-            return getWordsFromResultSet(ps);
-        } catch (SQLException e) {
-            e.printStackTrace();
+          ResultSet rs = ps.executeQuery();
+          try {
+            ArrayList<Word> words = new ArrayList<>();
+            while (rs.next()) {
+              words.add(new Word(rs.getString(2), rs.getString(3)));
+            }
+            return words;
+          } finally {
+            close(rs);
+          }
+        } finally {
+          close(ps);
         }
-        return new ArrayList<>();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+      return new ArrayList<>();
     }
 
     /**
-     * Get all words target from the database (only target, non include the definition).
+     * Get all words target from the database.
      */
     public ArrayList<String> getWordTargetList() {
-        final String SQL_QUERY = "SELECT * FROM your_vocabulary";
+        final String SQL_QUERY = "SELECT target FROM your_vocabulary";
         try {
-            PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
+            PreparedStatement ps = connectVocab.prepareStatement(SQL_QUERY);
             try {
                 ResultSet rs = ps.executeQuery();
                 try {
                     ArrayList<String> targets = new ArrayList<>();
                     while (rs.next()) {
-                        targets.add(rs.getString(2));
+                        targets.add("target");
                     }
                     return targets;
 
