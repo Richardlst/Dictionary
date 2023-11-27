@@ -101,7 +101,7 @@ public class VocabDictionary extends Dictionary {
                 ResultSet rs = ps.executeQuery();
                 try {
                     if (rs.next()) {
-                        return rs.getString("definition");
+                        return "This word already exists in your vocab";
                     } else {
                         return "Word not found in the your vocab.";
                     }
@@ -120,12 +120,11 @@ public class VocabDictionary extends Dictionary {
     /**
      * Add new word to database.
      */
-    public boolean addWord(final String target, final String definition) {
-        final String SQL_QUERY = "INSERT INTO vocab_dictionary.your_vocabulary (target, definition) VALUES (?, ?)";
+    public boolean addWord(final String target) {
+        final String SQL_QUERY = "INSERT INTO vocab_dictionary.your_vocabulary (target) VALUES (?)";
         try {
             PreparedStatement ps = connectVocab.prepareStatement(SQL_QUERY);
             ps.setString(1, target);
-            ps.setString(2, definition);
             try {
                 ps.executeUpdate();
             } catch (SQLIntegrityConstraintViolationException e) {
@@ -140,81 +139,6 @@ public class VocabDictionary extends Dictionary {
             e.printStackTrace();
             return false;
         }
-    }
-
-    /**
-     * Delete the word `target` from the database.
-     */
-    public boolean deleteWord(final String target) {
-        final String SQL_QUERY = "DELETE FROM vocab_dictionary WHERE target = ?";
-        try {
-            PreparedStatement ps = connectVocab.prepareStatement(SQL_QUERY);
-            ps.setString(1, target);
-            try {
-                int checkDeleted = ps.executeUpdate();
-                if (checkDeleted == 0) {
-                    return false;
-                }
-            } finally {
-                close(ps);
-            }
-            count_vocab--;
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    /**
-     * Edit the word `target` to the according definition.
-     */
-    public boolean editWord(final String target, final String definition) {
-        final String SQL_QUERY = "UPDATE vocab_dictionary SET definition = ? WHERE target = ?";
-        try {
-            PreparedStatement ps = connectVocab.prepareStatement(SQL_QUERY);
-            ps.setString(1, definition);
-            ps.setString(2, target);
-            try {
-                int checkEdit = ps.executeUpdate();
-                if (checkEdit == 0) {
-                    return false;
-                }
-            } finally {
-                close(ps);
-            }
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    /**
-     * Get all words from result set of the given SQL query.
-     */
-    public ArrayList<Word> getWordList() {
-      final String SQL_QUERY = "SELECT * FROM dictionary";
-      try {
-        PreparedStatement ps = connectVocab.prepareStatement(SQL_QUERY);
-        try {
-          ResultSet rs = ps.executeQuery();
-          try {
-            ArrayList<Word> words = new ArrayList<>();
-            while (rs.next()) {
-              words.add(new Word(rs.getString(2), rs.getString(3)));
-            }
-            return words;
-          } finally {
-            close(rs);
-          }
-        } finally {
-          close(ps);
-        }
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-      return new ArrayList<>();
     }
 
     /**
