@@ -7,58 +7,92 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class TranslatorApi {
 
-    /**
-     * Translate English text `text` into Vietnamese.
-     */
-    public static String translateEnToVi(String text) {
-        try {
-            return translate("en", "vi", text);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return text;
-    }
+  private static final int THREAD_POOL_SIZE = 10;
 
-    /**
-     * Translate Vietnamese text `text` into English.
-     */
-    public static String translateViToEn(String text) {
-        try {
-            return translate("vi", "en", text);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return text;
+  /**
+   * Translate English text `text` into Vietnamese.
+   */
+  public static String translateEnToVi(String text) {
+    try {
+      return translate("en", "vi", text);
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+    return text;
+  }
 
-    /**
-     * Translate text from `langFrom` to `langTo`.
-     */
-    private static String translate(String langFrom, String langTo, String text)
-            throws IOException {
-        String urlStr =
-                "https://script.google.com/macros/s/AKfycby3AOWmhe32TgV9nW-Q0TyGOEyCHQeFiIn7hRgy5m8jHPaXDl2GdToyW_3Ys5MTbK6wjg/exec"
-                        + "?q="
-                        + URLEncoder.encode(text, StandardCharsets.UTF_8)
-                        + "&target="
-                        + langTo
-                        + "&source="
-                        + langFrom;
-        URL url = new URL(urlStr);
+  /**
+   * Translate Vietnamese text `text` into English.
+   */
+  public static String translateViToEn(String text) {
+    try {
+      return translate("vi", "en", text);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return text;
+  }
+
+  /**
+   * Translate text from `langFrom` to `langTo`.
+   */
+  private static String translate(String langFrom, String langTo, String text)
+      throws IOException {
+    String urlStr =
+        "https://script.google.com/macros/s/AKfycby3AOWmhe32TgV9nW-Q0TyGOEyCHQeFiIn7hRgy5m8jHPaXDl2GdToyW_3Ys5MTbK6wjg/exec"
+            + "?q="
+            + URLEncoder.encode(text, StandardCharsets.UTF_8)
+            + "&target="
+            + langTo
+            + "&source="
+            + langFrom;
+    URL url = new URL(urlStr);
+
+    ExecutorService executorService = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
+
+    List<Future<String>> futures = new ArrayList<>();
+
+    for (int i = 0; i < THREAD_POOL_SIZE; i++) {
+      futures.add(executorService.submit(() -> {
         StringBuilder response = new StringBuilder();
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestProperty("User-Agent", "Mozilla/5.0");
-        BufferedReader in =
-                new BufferedReader(
-                        new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8));
-        String inputLine;
-        while ((inputLine = in.readLine()) != null) {
+        try {
+          HttpURLConnection con = (HttpURLConnection) url.openConnection();
+          con.setRequestProperty("User-Agent", "Mozilla/5.0");
+          BufferedReader in =
+              new BufferedReader(
+                  new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8));
+          String inputLine;
+          while ((inputLine = in.readLine()) != null) {
             response.append(inputLine);
+          }
+          in.close();
+        } catch (IOException e) {
+          e.printStackTrace();
         }
-        in.close();
         return response.toString();
+      }));
     }
+
+    StringBuilder result = new StringBuilder();
+    for (Future<String> future : futures) {
+      try {
+        String translation = future.get();
+        result.append(translation);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+
+    executorService.shutdown();
+
+    return result.toString();
+  }
 }
