@@ -27,7 +27,7 @@ public class UsedTime {
   public void stopApp() {
     long endTime = System.currentTimeMillis();
     long nowUsedTime = endTime - startTime;
-    usedTime += nowUsedTime;
+    usedTime += nowUsedTime / 1000;
     saveUsedTime(usedTime);
   }
 
