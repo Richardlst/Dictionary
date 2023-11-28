@@ -7,16 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class TranslatorApi {
-
-  private static final int THREAD_POOL_SIZE = 10;
-
   /**
    * Translate English text `text` into Vietnamese.
    */
@@ -55,44 +47,17 @@ public class TranslatorApi {
             + "&source="
             + langFrom;
     URL url = new URL(urlStr);
-
-    ExecutorService executorService = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
-
-    List<Future<String>> futures = new ArrayList<>();
-
-    for (int i = 0; i < THREAD_POOL_SIZE; i++) {
-      futures.add(executorService.submit(() -> {
-        StringBuilder response = new StringBuilder();
-        try {
-          HttpURLConnection con = (HttpURLConnection) url.openConnection();
-          con.setRequestProperty("User-Agent", "Mozilla/5.0");
-          BufferedReader in =
-              new BufferedReader(
-                  new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8));
-          String inputLine;
-          while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-          }
-          in.close();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-        return response.toString();
-      }));
+    StringBuilder response = new StringBuilder();
+    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+    con.setRequestProperty("User-Agent", "Mozilla/5.0");
+    BufferedReader in =
+        new BufferedReader(
+            new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8));
+    String inputLine;
+    while ((inputLine = in.readLine()) != null) {
+      response.append(inputLine);
     }
-
-    StringBuilder result = new StringBuilder();
-    for (Future<String> future : futures) {
-      try {
-        String translation = future.get();
-        result.append(translation);
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-    }
-
-    executorService.shutdown();
-
-    return result.toString();
+    in.close();
+    return response.toString();
   }
 }
