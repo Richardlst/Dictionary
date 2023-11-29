@@ -52,6 +52,12 @@ public class VoiceToText {
       inputReader.close();
       errorReader.close();
 
+
+      // In thông tin
+      System.out.println("Output:\n" + output.toString());
+      System.out.println("Error:\n" + errorOutput.toString());
+      System.out.println("Exit code: " + exitCode);
+
     } catch (IOException | InterruptedException e) {
       e.printStackTrace();
     }
