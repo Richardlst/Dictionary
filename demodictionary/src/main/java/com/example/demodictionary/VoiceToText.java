@@ -8,7 +8,8 @@ public class VoiceToText {
   /**
    * Voice to text.
    */
-  public static void Voice_Text() {
+  public static String Voice_Text() {
+    String voiceText = "";
     try {
       String pythonInterpreter = "C:\\Users\\thinh\\AppData\\Local\\Programs\\Python\\Python311\\python.exe";
       String pythonScriptPath = "C:\\Users\\thinh\\Downloads\\Speech.py";
@@ -41,10 +42,11 @@ public class VoiceToText {
         errorOutput.append(line).append("\n");
       }
 
-      // In thông tin
-      System.out.println(output.toString());
-      System.out.println(errorOutput.toString());
-      System.out.println("Exit code: " + exitCode);
+      if (exitCode == 0 && errorOutput.length() == 0) {
+        voiceText = output.toString();
+      } else {
+        System.out.println("Error:\n" + errorOutput.toString());
+      }
 
       // Đóng luồng đọc
       inputReader.close();
@@ -53,5 +55,6 @@ public class VoiceToText {
     } catch (IOException | InterruptedException e) {
       e.printStackTrace();
     }
+    return voiceText;
   }
 }
